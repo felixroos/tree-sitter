@@ -6,7 +6,7 @@ use tree_sitter::{Language, Node, Parser, Point, Query, QueryCursor, TextProvide
 fn parse_text(text: impl AsRef<[u8]>) -> (Tree, Language) {
     let language = get_language("c");
     let mut parser = Parser::new();
-    parser.set_language(language).unwrap();
+    parser.set_language(language.clone()).unwrap();
     (parser.parse(text, None).unwrap(), language)
 }
 
@@ -17,7 +17,7 @@ where
 {
     let language = get_language("c");
     let mut parser = Parser::new();
-    parser.set_language(language).unwrap();
+    parser.set_language(language.clone()).unwrap();
     let tree = parser.parse_with(callback, None).unwrap();
     // eprintln!("{}", tree.clone().root_node().to_sexp());
     assert_eq!("comment", tree.clone().root_node().child(0).unwrap().kind());

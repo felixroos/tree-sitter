@@ -32,9 +32,9 @@ fn issue_2107_first_child_group_anchor_had_no_effect() {
             )
         )
     "#};
-    let query = Query::new(language, query).unwrap();
+    let query = Query::new(language.clone(), query).unwrap();
     assert_query_matches(
-        language,
+        &language,
         &query,
         source_code,
         &[(0, vec![("constant", "int a")])],
